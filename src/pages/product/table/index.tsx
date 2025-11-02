@@ -40,10 +40,11 @@ import ThemeButton from "components/ui/Button";
 import { defaultSx } from "components/ui/Button/styles";
 import { CloseIcon } from "assets/svg/CloseIcon";
 import SelectColumnVisibility from "components/third-party/SelectColumnVisibility";
-import { useGetStaff } from "hooks/staff/query";
+
 import { UpdateStatus, updateStaffPassword } from "services/staff";
 import { Edit, LockKeyhole, Send } from "lucide-react";
 import OtherModal from "../../../components/ui/Modal";
+import { useGetProduct } from "hooks/product/query";
 
 const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
   const theme = useTheme();
@@ -74,9 +75,9 @@ const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
   });
 
   let query: any = {
-    viewSize: viewPage,
-    startIndex: columnFilters?.length && columnFilters ? 0 : startIndex,
-    isActive: value === "active" ? true : false,
+    // viewSize: viewPage,
+    // startIndex: columnFilters?.length && columnFilters ? 0 : startIndex,
+    // isActive: value === "active" ? true : false,
   };
   if (columnFilters && columnFilters.length > 0) {
     const data = columnFilters?.map((ele: any) => {
@@ -93,7 +94,7 @@ const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
     data: staffData,
     refetch: refetchStaff,
     isFetching,
-  }: any = useGetStaff({ query: { ...query } });
+  }: any = useGetProduct({ query: { ...query } });
 
   const options = (rowData: any) => [
     {
@@ -101,7 +102,7 @@ const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
       value: "Edit Profile",
 
       content: () => {
-        navigate(`/staff/update/${rowData?.uuid}`);
+        navigate(`/product/update/${rowData?.uuid}`);
       },
     },
     {
@@ -202,21 +203,30 @@ const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
         cell: (cell: any) => cell?.row?.index + 1 || "N/A",
       },
       {
-        header: "Name",
-        accessorKey: "firstName",
+        header: "Item",
+        accessorKey: "name",
         meta: {
           type: "text",
         },
-        cell: (cell: any) =>
-          `${cell?.row?.original?.firstName || ""} ${cell?.row?.original?.lastName || ""} `,
+        cell: (cell: any) => `${cell?.row?.original?.name || ""}  `,
+        minSize: 120,
+      },
+
+      {
+        header: "Description",
+        accessorKey: "description",
+        meta: {
+          type: "text",
+        },
+        cell: (cell: any) => `${cell?.row?.original?.description || ""}  `,
         minSize: 120,
       },
       {
-        header: "Email",
+        header: "Item Code",
         meta: {
           type: "character_alpha",
         },
-        accessorKey: "email",
+        accessorKey: "itemCode",
         minSize: 180,
 
         cell: ({ cell }: any) => (
@@ -225,24 +235,49 @@ const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
             textTransform={"lowercase"}
             color={theme.palette.primary.main}
           >
-            {cell?.row?.original?.email || "N/A"}
+            {cell?.row?.original?.itemCode || "N/A"}
           </Typography>
         ),
       },
-
       {
-        header: "Airport",
-        accessorKey: "airport",
-        minSize: 180,
+        header: "Airport & Price",
+        accessorKey: "pricing",
+        minSize: 250,
         cell: (cell: any) => {
+          const pricing = cell?.row?.original?.pricing || [];
+
+          if (!pricing.length) return "--";
+
           return (
-            <Box display={"flex"} justifyContent={"center"}>
-              <Chip
-                color={"success"}
-                label={cell?.row?.original?.airport || "--"}
-                size="small"
-                variant="light"
-              />
+            <Box display="flex" flexWrap="wrap" gap={1} justifyContent="center">
+              {pricing.map((item: any, idx: number) => (
+                <Box
+                  key={idx}
+                  display="flex"
+                  alignItems="center"
+                  gap={0.5}
+                  px={1}
+                  py={0.5}
+                  sx={{
+                    borderRadius: "9999px",
+                    backgroundColor: "#F5F6FA",
+                    border: "1px solid #E0E0E0",
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "#2E7D32", fontWeight: 500 }}
+                  >
+                    {item.airport}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "#1565C0", fontWeight: 500 }}
+                  >
+                    ₹{item.price}
+                  </Typography>
+                </Box>
+              ))}
             </Box>
           );
         },

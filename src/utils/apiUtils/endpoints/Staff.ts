@@ -19,7 +19,7 @@ const staff = {
     },
   },
 
-  updateStaff: {
+  updateProduct: {
     v1: {
       ...defaults.methods.PUT,
       ...defaults.versions.v1,

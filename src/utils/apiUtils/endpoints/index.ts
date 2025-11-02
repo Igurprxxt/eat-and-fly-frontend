@@ -12,6 +12,7 @@ import chassis from "./chassis";
 import customer from "./customer";
 
 import invoice from "./invoice";
+import product from "./product";
 export {
   user,
   chassis,
@@ -24,4 +25,5 @@ export {
   dashboard,
   invoice,
   roleAndPermission,
+  product,
 };

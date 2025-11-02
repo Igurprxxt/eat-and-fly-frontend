@@ -180,7 +180,7 @@ const MainRoutes: any = {
           element: <AddProduct />,
         },
         {
-          path: "/product/update/:staffId",
+          path: "/product/update/:productId",
           element: <AddProduct />,
         },
       ],

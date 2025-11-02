@@ -20,6 +20,7 @@ import { openSnackbar } from "api/snackbar";
 import { SnackbarProps } from "types/snackbar";
 import { InfoCircle } from "iconsax-react";
 import FormLabels from "components/ui/FormLabel";
+import { createProduct, getSingleFetch, updateProduct } from "services/product";
 
 // -------------------- SCHEMA -------------------- //
 const pricingSchema = z.object({
@@ -100,40 +101,40 @@ const AddProduct: React.FC = () => {
 
   const onSubmit = (data: FormValues) => {
     setLoading(true);
-    // const action = productId ? updateProduct : createProduct;
+    const action = productId ? updateProduct : createProduct;
 
-    // const payload = {
-    //   ...data,
-    //   isAvailable: true, // always send true in payload
-    //   pricing: data.pricing.map((p) => ({
-    //     airport: p.airport,
-    //     price: Number(p.price),
-    //   })),
-    // };
+    const payload = {
+      ...data,
+      isAvailable: true, // always send true in payload
+      pricing: data.pricing.map((p) => ({
+        airport: p.airport,
+        price: Number(p.price),
+      })),
+    };
 
-    // action({
-    //   pathParams: productId ? { id: productId } : undefined,
-    //   body: payload,
-    // })
-    //   ?.then(() => {
-    //     setLoading(false);
-    //     navigate("/products");
-    //     openSnackbar({
-    //       open: true,
-    //       message: `Product ${productId ? "updated" : "added"} successfully.`,
-    //       variant: "alert",
-    //       alert: { color: "success" },
-    //     } as SnackbarProps);
-    //   })
-    //   .catch((err: any) => {
-    //     setLoading(false);
-    //     openSnackbar({
-    //       open: true,
-    //       message: err?.data?.message || "Something went wrong",
-    //       variant: "alert",
-    //       alert: { color: "error", icon: <InfoCircle /> },
-    //     } as SnackbarProps);
-    //   });
+    action({
+      pathParams: productId ? { id: productId } : undefined,
+      body: payload,
+    })
+      ?.then(() => {
+        setLoading(false);
+        navigate("/products");
+        openSnackbar({
+          open: true,
+          message: `Product ${productId ? "updated" : "added"} successfully.`,
+          variant: "alert",
+          alert: { color: "success" },
+        } as SnackbarProps);
+      })
+      .catch((err: any) => {
+        setLoading(false);
+        openSnackbar({
+          open: true,
+          message: err?.data?.message || "Something went wrong",
+          variant: "alert",
+          alert: { color: "error", icon: <InfoCircle /> },
+        } as SnackbarProps);
+      });
   };
 
   return (
