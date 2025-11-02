@@ -1,49 +1,69 @@
+import defaults from "./defaults";
 
-import defaults from './defaults';
-
-const prefix = '/staff';
+const prefix = "/user";
 
 const staff = {
   invite: {
     v1: {
       ...defaults.methods.POST,
       ...defaults.versions.v1,
-      uri: prefix + '/invite'
-    }
+      uri: prefix + "/admin/add-user ",
+    },
   },
 
   fetchAllFetch: {
     v1: {
       ...defaults.methods.GET,
       ...defaults.versions.v1,
-      uri: prefix
-    }
+      uri: prefix,
+    },
   },
 
-resendInvite:{
-  v1: {
-      ...defaults.methods.POST,
-      ...defaults.versions.v1,
-      uri: prefix+ "/resend"
-    }
-},
-    acceptRecruiter: {
-    v1: {
-      ...defaults.methods.POST,
-      ...defaults.versions.v1,
-      uri: prefix+"/accept"
-    }
-  }, 
-    UpdateStatus: {
+  updateStaff: {
     v1: {
       ...defaults.methods.PUT,
       ...defaults.versions.v1,
-      uri: prefix + '/:id'
-    }
+      uri: prefix + "/admin/updateProfile/:id",
+    },
   },
 
+  updatePassword: {
+    v1: {
+      ...defaults.methods.PUT,
+      ...defaults.versions.v1,
+      uri: prefix + "/admin/password",
+    },
+  },
 
+  getSingleFetch: {
+    v1: {
+      ...defaults.methods.GET,
+      ...defaults.versions.v1,
+      uri: prefix + "/admin/:id",
+    },
+  },
 
+  resendInvite: {
+    v1: {
+      ...defaults.methods.POST,
+      ...defaults.versions.v1,
+      uri: prefix + "/resend",
+    },
+  },
+  acceptRecruiter: {
+    v1: {
+      ...defaults.methods.POST,
+      ...defaults.versions.v1,
+      uri: prefix + "/accept",
+    },
+  },
+  UpdateStatus: {
+    v1: {
+      ...defaults.methods.PUT,
+      ...defaults.versions.v1,
+      uri: prefix + "/:id",
+    },
+  },
 };
 
 export default staff;

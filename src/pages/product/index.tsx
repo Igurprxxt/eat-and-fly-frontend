@@ -5,12 +5,13 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import MainCard from "components/MainCard";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ThemeButton from "components/ui/Button";
-import { Filter, UserAdd } from "iconsax-react";
+import { Filter } from "iconsax-react";
 import { debounce } from "lodash";
-import StaffTable from "./table";
-import { PlusIcon } from "assets/svg/upload/PlusIcon";
 
-const StaffMainPage = () => {
+import { PlusIcon } from "assets/svg/upload/PlusIcon";
+import ProductTable from "./table";
+
+const ProductMainPage = () => {
   function getPathIndex(pathname: string) {
     let selectedTab = "";
     switch (pathname) {
@@ -50,50 +51,50 @@ const StaffMainPage = () => {
     setSearchText(value);
   }, 500);
 
-  const tabs = [
-    {
-      label: "active",
-      value: "active",
-      content: (
-        <StaffTable
-          value={value}
-          searchText={searchText}
-          drawer={drawer}
-          setDrawer={setDrawer}
-        />
-      ),
-      route: "/staff/active",
-    },
+  // const tabs = [
+  //   {
+  //     label: "active",
+  //     value: "active",
+  //     content: (
+  //       <ProductTable
+  //         value={value}
+  //         searchText={searchText}
+  //         drawer={drawer}
+  //         setDrawer={setDrawer}
+  //       />
+  //     ),
+  //     route: "/staff/active",
+  //   },
 
-    {
-      label: "Inactive",
-      value: "inactive",
-      content: (
-        <StaffTable
-          value={value}
-          searchText={searchText}
-          drawer={drawer}
-          setDrawer={setDrawer}
-        />
-      ),
-      route: "/staff/inactive",
-    },
-  ];
+  //   {
+  //     label: "Inactive",
+  //     value: "inactive",
+  //     content: (
+  //       <ProductTable
+  //         value={value}
+  //         searchText={searchText}
+  //         drawer={drawer}
+  //         setDrawer={setDrawer}
+  //       />
+  //     ),
+  //     route: "/staff/inactive",
+  //   },
+  // ];
 
   const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down("sm"));
   return (
     <div>
       <Page
-        title="Staffs"
+        title="Products"
         primaryAction={
           <Stack direction="row" spacing={1}>
-            <Link to="/staff/add">
+            <Link to="/product/add">
               <ThemeButton
                 variant="contained"
                 size="small"
                 startIcon={!isMobile && <PlusIcon />}
               >
-                {isMobile ? <PlusIcon /> : "Add  Staff"}
+                {isMobile ? <PlusIcon /> : "Add  Product"}
               </ThemeButton>
             </Link>
 
@@ -115,38 +116,46 @@ const StaffMainPage = () => {
             content={false}
             headerSX={{ p: 0 }}
             title={
-              <Stack
-                direction={"row"}
-                alignItems={"center"}
-                justifyContent={"space-between"}
-              >
-                <Box sx={{ borderBottom: 0, borderColor: "divider" }}>
-                  <TabList
-                    onChange={(e, value) => {
-                      const route = tabs.find(
-                        (tab) => tab?.value === value
-                      )?.route;
-                      handleChange(e, value, route);
-                    }}
-                    aria-label="lab API tabs example"
-                  >
-                    {tabs?.map((tab) => (
-                      <Tab
-                        key={tab.value}
-                        label={tab.label}
-                        value={tab.value}
-                      />
-                    ))}
-                  </TabList>
-                </Box>
-              </Stack>
+              <></>
+              // <Stack
+              //   direction={"row"}
+              //   alignItems={"center"}
+              //   justifyContent={"space-between"}
+              // >
+              //   <Box sx={{ borderBottom: 0, borderColor: "divider" }}>
+              //     <TabList
+              //       onChange={(e, value) => {
+              //         const route = tabs.find(
+              //           (tab) => tab?.value === value
+              //         )?.route;
+              //         handleChange(e, value, route);
+              //       }}
+              //       aria-label="lab API tabs example"
+              //     >
+              //       {tabs?.map((tab) => (
+              //         <Tab
+              //           key={tab.value}
+              //           label={tab.label}
+              //           value={tab.value}
+              //         />
+              //       ))}
+              //     </TabList>
+              //   </Box>
+              // </Stack>
             }
           >
-            {tabs?.map((tab) => (
+            {/* {tabs?.map((tab) => (
               <TabPanel key={tab?.value} value={tab?.value} sx={{ p: 0 }}>
                 {tab?.content}
               </TabPanel>
-            ))}
+            ))} */}
+
+            <ProductTable
+              value={value}
+              searchText={searchText}
+              drawer={drawer}
+              setDrawer={setDrawer}
+            />
           </MainCard>
         </TabContext>
       </Page>
@@ -154,4 +163,4 @@ const StaffMainPage = () => {
   );
 };
 
-export default StaffMainPage;
+export default ProductMainPage;

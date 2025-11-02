@@ -1,43 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import MainCard from "components/MainCard";
-import {
-  Box,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  TextField,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-import { useNavigate } from "react-router";
+import { Typography, useMediaQuery } from "@mui/material";
+import { useNavigate, useParams } from "react-router";
 import CapitalizeInput from "components/ui/CaptializeInput";
 import EmailInput from "components/ui/emailInput";
 import Dropdown from "components/ui/Dropdown";
 import ThemeButton from "components/ui/Button";
-import { inviteStaff } from "services/staff";
+import { getSingleFetch, inviteStaff, updateStaff } from "services/staff";
 import { openSnackbar } from "api/snackbar";
 import { SnackbarProps } from "types/snackbar";
 import { InfoCircle } from "iconsax-react";
-import { Autocomplete } from "@mui/material";
-import { countriesPhone } from "utils/locales/phone";
-import { OutlinedInput } from "@mui/material";
-import { useRole } from "hooks/useAuth";
+import { airportCities } from "./constant";
+import Input from "components/ui/Input";
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required." }),
   lastName: z.string().min(1, { message: "Last name is required." }),
-  countryCode: z.string().min(1, "Country code is required"),
-  number: z.string().min(1, { message: "Phone number is required." }),
   email: z
     .string()
     .min(1, { message: "Email is required." })
     .email("Please enter a valid email address."),
-  role: z
+
+  password: z
+    .string()
+    .trim()
+    .min(8, { message: "Password must be at least 8 characters long." })
+    .regex(/[A-Z]/, {
+      message: "Password must contain at least one uppercase letter.",
+    })
+    .regex(/[a-z]/, {
+      message: "Password must contain at least one lowercase letter.",
+    })
+    .regex(/[0-9]/, { message: "Password must contain at least one number." })
+    .regex(/[^A-Za-z0-9]/, {
+      message: "Password must contain at least one special character.",
+    }),
+  airport: z
     .string()
     .or(z.number())
     .refine((value) => value !== undefined && value !== 0 && value !== "", {
@@ -48,7 +51,7 @@ const formSchema = z.object({
 const AddStaff: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const { roles }: any = useRole();
+  const { staffId } = useParams();
   const isMd = useMediaQuery((theme: any) => theme.breakpoints.up("sm"));
 
   const {
@@ -60,47 +63,93 @@ const AddStaff: React.FC = () => {
     defaultValues: {
       firstName: "",
       lastName: "",
-      number: "",
       email: "",
-      role: "",
-      countryCode: "+1",
+      airport: "",
+      password: "",
     },
     resolver: zodResolver(formSchema),
   });
 
+  console.log("staffId", staffId);
+
+  useEffect(() => {
+    getSingleFetch({
+      pathParams: {
+        id: staffId,
+      },
+    })?.then((res) => {
+      reset(res?.data);
+    });
+  }, [staffId]);
+
   const onSubmit = (data: any) => {
     setLoading(true);
-    inviteStaff({
-      body: { ...data, email: data?.email?.toLowerCase() },
-    })
-      ?.then((res) => {
-        setLoading(false);
-        navigate("/staff");
-        openSnackbar({
-          open: true,
-          message: "Invite Send successfully.",
-          variant: "alert",
-          alert: {
-            color: "success",
-          },
-        } as SnackbarProps);
+    if (staffId) {
+      updateStaff({
+        pathParams: { id: staffId },
+        body: { ...data, email: data?.email?.toLowerCase(), role: "staff" },
       })
-      .catch((err) => {
-        setLoading(false);
-        openSnackbar({
-          open: true,
-          message: err?.data?.error?.message || "Something went wrong",
-          variant: "alert",
-          alert: {
-            color: "error",
-            icon: <InfoCircle />,
-          },
-          anchorOrigin: {
-            vertical: "top",
-            horizontal: "right",
-          },
-        } as SnackbarProps);
-      });
+        ?.then((res) => {
+          setLoading(false);
+          navigate("/staff");
+          openSnackbar({
+            open: true,
+            message: "Staff Update successfully.",
+            variant: "alert",
+            alert: {
+              color: "success",
+            },
+          } as SnackbarProps);
+        })
+        .catch((err) => {
+          setLoading(false);
+          openSnackbar({
+            open: true,
+            message: err?.data?.error?.message || "Something went wrong",
+            variant: "alert",
+            alert: {
+              color: "error",
+              icon: <InfoCircle />,
+            },
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right",
+            },
+          } as SnackbarProps);
+        });
+    } else {
+      inviteStaff({
+        body: { ...data, email: data?.email?.toLowerCase(), role: "staff" },
+      })
+        ?.then((res) => {
+          setLoading(false);
+          navigate("/staff");
+          openSnackbar({
+            open: true,
+            message: "Staff add  successfully.",
+            variant: "alert",
+            alert: {
+              color: "success",
+            },
+          } as SnackbarProps);
+        })
+        .catch((err) => {
+          setLoading(false);
+          openSnackbar({
+            open: true,
+            message: err?.data?.message || "Something went wrong",
+            variant: "alert",
+            alert: {
+              color: "error",
+              icon: <InfoCircle />,
+            },
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right",
+            },
+          } as SnackbarProps);
+        });
+    }
   };
 
   return (
@@ -108,7 +157,7 @@ const AddStaff: React.FC = () => {
       <Grid item xs={12} md={4}>
         <Stack direction="column" spacing={2}>
           <Typography variant={isMd ? "h3" : "h4"} color="#394663">
-            Add Staff
+            {staffId ? "Update Staff" : "Add Staff"}
           </Typography>
         </Stack>
       </Grid>
@@ -141,138 +190,40 @@ const AddStaff: React.FC = () => {
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <FormControl fullWidth>
-                  <FormLabel
-                    required
-                    sx={{
-                      "& .MuiFormLabel-asterisk ": { color: "red" },
-                      mb: 0.5,
-                      color: "#5A667B",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Phone Number
-                  </FormLabel>
-                  <Stack
-                    direction={"row"}
-                    alignItems={"center"}
-                    width={"100%"}
-                    gap={0}
-                  >
-                    <Controller
-                      name="countryCode"
-                      control={control}
-                      render={({ field }) => (
-                        <Autocomplete
-                          id="country-select-demo"
-                          sx={{
-                            "& .MuiOutlinedInput-root": {
-                              borderRadius: 0,
-                              borderTopLeftRadius: 6,
-                              borderBottomLeftRadius: 6,
-                            },
-                            width: 70,
-                          }}
-                          disableClearable
-                          options={countriesPhone}
-                          onChange={(event, selectedOption: any) =>
-                            field.onChange(selectedOption?.phone || "")
-                          }
-                          value={countriesPhone.find(
-                            (option) => option.phone === field.value || null
-                          )}
-                          autoHighlight
-                          getOptionLabel={(option: any) => option.phone}
-                          renderOption={(props, option) => (
-                            <Box
-                              component="li"
-                              sx={{ "& > img": { mr: 1, flexShrink: 0 } }}
-                              {...props}
-                            >
-                              {option.phone}
-                            </Box>
-                          )}
-                          renderInput={(params) => (
-                            <TextField
-                              {...params}
-                              name="countryCode"
-                              sx={{ borderRadius: 0 }}
-                              inputProps={{
-                                ...params.inputProps,
-                                autoComplete: "new-password",
-                              }}
-                            />
-                          )}
-                        />
-                      )}
-                    />
-
-                    <Controller
-                      name="number"
-                      control={control}
-                      render={({ field }) => (
-                        <OutlinedInput
-                          notched={false}
-                          {...field}
-                          placeholder="Enter phone number"
-                          sx={{
-                            height: "41px",
-                            borderRadius: "0",
-                            borderTopRightRadius: "6px",
-                            borderBottomRightRadius: "6px",
-                            borderTopLeftRadius: "0",
-                            borderBottomLeftRadius: "0",
-                          }}
-                          fullWidth
-                          onChange={(e) => {
-                            const value = e.target.value.replace(/[^0-9]/g, "");
-                            if (value.length <= 10) {
-                              field.onChange(value);
-                            }
-                          }}
-                        />
-                      )}
-                    />
-                  </Stack>
-
-                  {(errors?.number?.message && (
-                    <FormHelperText sx={{ color: "red", marginTop: 1 }}>
-                      {errors?.number?.message}
-                    </FormHelperText>
-                  )) ||
-                    (errors?.countryCode?.message && (
-                      <FormHelperText sx={{ color: "red", marginTop: 1 }}>
-                        {errors?.countryCode?.message}
-                      </FormHelperText>
-                    ))}
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={6}>
                 <EmailInput
                   required
                   control={control}
                   label={"Email"}
                   name={"email"}
+                  disabled={staffId}
                   placeholder="Enter email"
                   error={errors}
                 />
               </Grid>
-              <Grid item xs={12} sm={12}>
+              <Grid item xs={12} sm={6}>
                 <Dropdown
                   required
                   control={control}
-                  PlaceholderValue="Select role"
-                  label="Role"
-                  name="role"
-                  options={roles?.map((ele: any) => {
-                    return {
-                      label: ele?.name,
-                      value: ele?.uuid,
-                    };
-                  })}
+                  PlaceholderValue="Select airport"
+                  label="Airport"
+                  name="airport"
+                  options={airportCities}
                   error={errors}
                 />
               </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <Input
+                  required
+                  disabled={staffId}
+                  control={control}
+                  label={"Password"}
+                  name={"password"}
+                  placeholder="Enter password"
+                  error={errors}
+                />
+              </Grid>
+
               <Stack
                 direction="row"
                 justifyContent="flex-end"
@@ -295,7 +246,7 @@ const AddStaff: React.FC = () => {
                   type="submit"
                   variant="contained"
                 >
-                  Add Staff
+                  {staffId ? "Update Staff" : "Add Staff"}
                 </ThemeButton>
               </Stack>
             </Grid>

@@ -33,7 +33,7 @@ export function PlusIcon2(props: SVGProps<SVGSVGElement>) {
     >
       <path
         d="M10.8086 5.09375V16.9062M16.7148 11H4.90234"
-        stroke="#2a50ede6"
+        stroke="#334735e6"
         stroke-width="1.3125"
         stroke-linecap="round"
         stroke-linejoin="round"

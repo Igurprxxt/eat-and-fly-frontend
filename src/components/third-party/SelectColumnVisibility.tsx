@@ -58,7 +58,7 @@ export default function SelectColumnVisibility({
         </Typography>
         <Typography
           sx={{
-            color: getIsAllColumnsVisible() ? "#2A50ED" : "black",
+            color: getIsAllColumnsVisible() ? "#334735" : "black",
             fontSize: "12px",
             fontWeight: 500,
           }}

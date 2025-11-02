@@ -433,7 +433,7 @@ const CreateRolePermission = ({
       <Box sx={{ border: "1px solid #C8D7F7", borderRadius: 1, marginTop: 2 }}>
         <Section
           title="Order Management"
-          icon={<BoxIcon color="#2A50ED" fontSize={25} />}
+          icon={<BoxIcon color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="add_order"
@@ -458,7 +458,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Billing Management"
-          icon={<CircleDollarSignIcon color="#2A50ED" fontSize={25} />}
+          icon={<CircleDollarSignIcon color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="view_billing"
@@ -473,7 +473,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Port Management"
-          icon={<Anchor color="#2A50ED" fontSize={25} />}
+          icon={<Anchor color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="add_port"
@@ -498,7 +498,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Driver Management"
-          icon={<UserCircle color="#2A50ED" fontSize={25} />} // use suitable icon
+          icon={<UserCircle color="#334735" fontSize={25} />} // use suitable icon
         />
         <CheckBox
           name="add_driver"
@@ -523,7 +523,7 @@ const CreateRolePermission = ({
 
         {/* <Section
           title="Dispatch Management"
-          icon={<Ship color="#2A50ED" fontSize={25} />}
+          icon={<Ship color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="add_dispatch"
@@ -548,7 +548,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Customer Management"
-          icon={<UsersRound color="#2A50ED" fontSize={25} />}
+          icon={<UsersRound color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="add_customer"
@@ -573,7 +573,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Consignors Management"
-          icon={<User2 color="#2A50ED" fontSize={25} />}
+          icon={<User2 color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="add_consignors"
@@ -598,7 +598,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Truck Management"
-          icon={<Truck color="#2A50ED" fontSize={25} />}
+          icon={<Truck color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="add_truck"
@@ -623,7 +623,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Chassis Management"
-          icon={<ToolIcon color="#2A50ED" fontSize={25} />}
+          icon={<ToolIcon color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="add_chassis"
@@ -648,7 +648,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Yard Management"
-          icon={<User color="#2A50ED" fontSize={25} />}
+          icon={<User color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="add_yard"
@@ -673,7 +673,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Staff Management"
-          icon={<Profile2User color="#2A50ED" fontSize={25} />}
+          icon={<Profile2User color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="invite_staff"
@@ -688,7 +688,7 @@ const CreateRolePermission = ({
 
         <Section
           title="Others Management"
-          icon={<MdManageAccounts color="#2A50ED" fontSize={25} />}
+          icon={<MdManageAccounts color="#334735" fontSize={25} />}
         />
         <CheckBox
           name="add_edit_role"

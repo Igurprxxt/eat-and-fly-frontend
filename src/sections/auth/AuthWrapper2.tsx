@@ -53,7 +53,7 @@ export default function AuthWrapper2({ children }: Props) {
               }}
             >
               <img
-                src={"/high-quality-background-wallpaper_783884-130073.jpeg"}
+                src={"/freepik__retouch__59532.jpeg"}
                 alt="Authimg"
                 style={{ height: "100vh", minHeight: "100%", width: "100%" }}
               />

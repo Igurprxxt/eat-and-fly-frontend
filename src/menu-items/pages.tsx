@@ -23,7 +23,7 @@ import Recruiter from "../../public/svg/recruiter";
 import HomeIcon from "assets/svg/HomeIcon";
 import { ToolIcon } from "assets/svg/tool";
 
-import { PackageCheck, UsersRound } from "lucide-react";
+import { PackageCheck, ShoppingCart, UsersRound } from "lucide-react";
 
 // icons
 
@@ -50,6 +50,7 @@ const icons = {
   dispatch: Box,
   Consignees: Box,
   customer: People,
+  staff: ShoppingCart,
 };
 
 // ==============================|| xMENU ITEMS - PAGES ||============================== //
@@ -74,6 +75,15 @@ const pages: any = {
       url: "/staff",
       icon: icons.student,
       activeIcon: icons.student,
+    },
+
+    {
+      id: "PRODUCT",
+      title: <FormattedMessage id="product" />,
+      type: "item",
+      url: "/products",
+      icon: icons.staff,
+      activeIcon: icons.staff,
     },
 
     {

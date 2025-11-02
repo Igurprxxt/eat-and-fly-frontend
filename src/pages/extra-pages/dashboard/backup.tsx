@@ -233,7 +233,7 @@ const Dashboard = () => {
                   transform: "translate(-50%, -50%)",
                   fontSize: 11,
                   fontWeight: 700,
-                  color: "#2a50ede6",
+                  color: "#334735e6",
                 }}
               >
                 {`${progress}%`}
@@ -244,9 +244,9 @@ const Dashboard = () => {
                 size={45}
                 thickness={4}
                 sx={{
-                  color: "#2a50ede6",
+                  color: "#334735e6",
                   "& .MuiCircularProgress-circle": {
-                    stroke: "#2a50ede6",
+                    stroke: "#334735e6",
                   },
                 }}
               />
@@ -270,9 +270,9 @@ const Dashboard = () => {
             >
               <ListItemIcon sx={{ mr: 2 }}>
                 {task.completed ? (
-                  <CheckCircle sx={{ color: "#2A50ED" }} />
+                  <CheckCircle sx={{ color: "#334735" }} />
                 ) : (
-                  <RadioButtonUnchecked sx={{ color: "#2A50ED" }} />
+                  <RadioButtonUnchecked sx={{ color: "#334735" }} />
                 )}
               </ListItemIcon>
               <ListItemText

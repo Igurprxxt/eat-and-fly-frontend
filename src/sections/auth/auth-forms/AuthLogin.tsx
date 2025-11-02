@@ -25,7 +25,6 @@ import { LoadingButton } from "@mui/lab";
 export default function AuthLogin({ forgot }: { forgot?: string }) {
   const { isLoggedIn, login } = useAuth();
   const scriptedRef = useScriptRef();
-  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
@@ -103,33 +102,6 @@ export default function AuthLogin({ forgot }: { forgot?: string }) {
               spacing={2}
               justifyContent={{ xs: "center", md: "flex-end" }}
             >
-              {/* <Grid item xs={12} md={12}>
-                <Stack spacing={1}>
-                  <InputLabel htmlFor="tenant-domain">
-                    Organization ID
-                  </InputLabel>
-                  <OutlinedInput
-                    id="tenant-domain"
-                    type="text"
-                    sx={{ height: "42px" }}
-                    name="tenantDomain"
-                    onBlur={(e) => {
-                      localStorage.setItem(
-                        "tenantDomain",
-                        e.target.value?.trim()
-                      );
-                    }}
-                    onChange={(e) => {
-                      localStorage.setItem(
-                        "tenantDomain",
-                        e.target.value?.trim()
-                      );
-                    }}
-                    placeholder="Enter organization ID"
-                    fullWidth
-                  />
-                </Stack>
-              </Grid> */}
               <Grid item xs={12} md={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="email-login">Email Address</InputLabel>

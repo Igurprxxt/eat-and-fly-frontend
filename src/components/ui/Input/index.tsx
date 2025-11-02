@@ -20,7 +20,7 @@ interface InputProps {
   labelStyle?: any;
   required?: boolean;
   autoFocus?: boolean;
-  disabled?: boolean;
+  disabled?: boolean | any;
   onInput?: any;
   sx?: any;
   endAdornment?: any;

@@ -227,7 +227,7 @@ const ApprovedStaffTable = () => {
                 paddingY: "6px",
                 height: "20px",
                 marginLeft: "8px",
-                color: "#2A50ED",
+                color: "#334735",
               }}
               label={`${StaffData?.count}  Member`}
               // color="primary"

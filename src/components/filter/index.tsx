@@ -121,7 +121,7 @@ export function Filter({ column, programViewSize, setProgramViewSize }: any) {
               <Avatar
                 src={option?.image}
                 sx={{
-                  color: "#2A50ED",
+                  color: "#334735",
                   bgcolor: "#C8D7F7",
                   width: "30px",
                   height: "30px",

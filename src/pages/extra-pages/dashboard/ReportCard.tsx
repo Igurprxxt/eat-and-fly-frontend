@@ -1,20 +1,33 @@
 // material-ui
-import { Avatar } from '@mui/material';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { Avatar } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 
 // project-imports
-import MainCard from 'components/MainCard';
-import { GenericCardProps } from 'types/root';
+import MainCard from "components/MainCard";
+import { GenericCardProps } from "types/root";
 
 // ==============================|| STATISTICS - REPORT CARD ||============================== //
 
-export default function ReportCard({ primary, secondary, iconPrimary, color }: any) {
+export default function ReportCard({
+  primary,
+  secondary,
+  iconPrimary,
+  color,
+}: any) {
   return (
     <MainCard>
       <Grid container justifyContent="space-between" alignItems="center">
-        <Avatar style={{ backgroundColor: '#EBF2FF', marginRight: 16, color: '#2A50ED' }} sx={{ borderRadius: 2 }} variant="square">
+        <Avatar
+          style={{
+            backgroundColor: "#EBF2FF",
+            marginRight: 16,
+            color: "#334735",
+          }}
+          sx={{ borderRadius: 2 }}
+          variant="square"
+        >
           {iconPrimary}
         </Avatar>
 

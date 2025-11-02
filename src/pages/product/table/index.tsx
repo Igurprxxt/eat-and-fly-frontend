@@ -26,12 +26,10 @@ import ScrollX from "components/ScrollX";
 import { Box, Stack, useTheme } from "@mui/material";
 import { Divider } from "@mui/material";
 import TablePagination from "components/third-party/TablePagination";
-import Button from "@mui/material/Button";
 import MenuList from "components/ui/menuList";
 import { StyleLockIcon, StyleUnLockIcon } from "assets/svg/lock";
 import { ProfileIcon } from "assets/svg/profile";
 import { Modal } from "@mui/material";
-// import { changeStatus, fetchAllRecruiter } from "services/recruiter";
 import TableLoading from "components/ui/TableLoading";
 import { openSnackbar } from "api/snackbar";
 import { SnackbarProps } from "types/snackbar";
@@ -42,18 +40,12 @@ import ThemeButton from "components/ui/Button";
 import { defaultSx } from "components/ui/Button/styles";
 import { CloseIcon } from "assets/svg/CloseIcon";
 import SelectColumnVisibility from "components/third-party/SelectColumnVisibility";
-import { DeleteIcon } from "assets/svg/Delete";
 import { useGetStaff } from "hooks/staff/query";
-import {
-  UpdateStatus,
-  resendInvite,
-  updateStaffPassword,
-} from "services/staff";
+import { UpdateStatus, updateStaffPassword } from "services/staff";
 import { Edit, LockKeyhole, Send } from "lucide-react";
-import { setupPassword } from "services/auth";
 import OtherModal from "../../../components/ui/Modal";
 
-const StaffTable = ({ value, searchText, drawer, setDrawer }: any) => {
+const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [columnFilters, setColumnFilters] = useState<any>([]);
@@ -255,42 +247,6 @@ const StaffTable = ({ value, searchText, drawer, setDrawer }: any) => {
           );
         },
       },
-      // {
-      //   header: "Status",
-      //   accessorKey: "status",
-      //   meta: {
-      //     filterVariant: "select",
-      //     filterOptions: [
-      //       { label: " Active", value: "active" },
-      //       { label: "Inactive", value: "inactive" },
-      //     ],
-      //   },
-      //   cell: (cell: any) => {
-      //     return (
-      //       <Box display={"flex"} justifyContent={"center"}>
-      //         <Chip
-      //           color={
-      //             cell?.row?.original?.status === "awaiting"
-      //               ? "warning"
-      //               : cell?.row?.original?.status === "active"
-      //                 ? "success"
-      //                 : "error"
-      //           }
-      //           label={
-      //             cell?.row?.original?.status === "awaiting"
-      //               ? "Awaiting"
-      //               : cell?.row?.original?.status === "active"
-      //                 ? "Active"
-      //                 : "Inactive"
-      //           }
-      //           size="small"
-      //           variant="light"
-      //         />
-      //       </Box>
-      //     );
-      //   },
-      //   minSize: 80,
-      // },
       {
         header: "Action",
         id: "action",
@@ -712,4 +668,4 @@ const StaffTable = ({ value, searchText, drawer, setDrawer }: any) => {
   );
 };
 
-export default StaffTable;
+export default ProductTable;

@@ -1,28 +1,72 @@
 // project-imports
-import { ThemeMode } from 'config';
+import { ThemeMode } from "config";
 
 // types
-import { PaletteThemeProps } from 'types/theme';
+import { PaletteThemeProps } from "types/theme";
 
-// ==============================|| PRESET THEME - DEFAULT ||============================== //
+// ==============================|| PRESET THEME - DEFAULT (with #334735 primary) ||============================== //
 
 export default function Default(mode: ThemeMode): PaletteThemeProps {
-  const contrastText = '#fff';
+  const contrastText = "#fff";
 
-  let primaryColors = ['#E9F0FF', '#C8D9FF', '#A3C0FF', '#7EA6FF', '#2A50ED', '#2A50ED', '#3F78FF', '#376DFF', '#2F63FF', '#2050FF'];
-  let secondaryColors = ['#F8F9FA', '#F8F9FA', '#F3F5F7', '#DBE0E5', '#BEC8D0', '#8996A4', '#5B6B79', '#3E4853', '#1D2630', '#131920'];
-  let errorColors = ['#f5bebe', '#e76767', '#dc2626', '#d31c1c', '#c50d0d'];
-  let warningColors = ['#f7dcb3', '#edad4d', '#e58a00', '#de7700', '#d35a00'];
-  let infoColors = ['#c5eff3', '#78d9e2', '#3ec9d6', '#30bccc', '#1ba9bc'];
-  let successColors = ['#c0e5d9', '#6bc2a5', '#2ca87f', '#21976c', '#107d4f'];
+  let primaryColors = [
+    "#E6EBE8",
+    "#D2D8D4",
+    "#AAB7AF",
+    "#80968B",
+    "#58756A",
+    "#334735",
+    "#273629",
+    "#1C261E",
+    "#131B15",
+    "#0C120D",
+  ];
+  let secondaryColors = [
+    "#F8F9FA",
+    "#F8F9FA",
+    "#F3F5F7",
+    "#DBE0E5",
+    "#BEC8D0",
+    "#8996A4",
+    "#5B6B79",
+    "#3E4853",
+    "#1D2630",
+    "#131920",
+  ];
+  let errorColors = ["#f5bebe", "#e76767", "#dc2626", "#d31c1c", "#c50d0d"];
+  let warningColors = ["#f7dcb3", "#edad4d", "#e58a00", "#de7700", "#d35a00"];
+  let infoColors = ["#c5eff3", "#78d9e2", "#3ec9d6", "#30bccc", "#1ba9bc"];
+  let successColors = ["#c0e5d9", "#6bc2a5", "#2ca87f", "#21976c", "#107d4f"];
 
   if (mode === ThemeMode.DARK) {
-    primaryColors = ['#2050FF', '#2F63FF', '#376DFF', '#3F78FF', '#2A50ED', '#2A50ED', '#7EA6FF', '#2A50ED', '#C8D9FF', '#E9F0FF'];
-    secondaryColors = ['#131920', '#1D2630', '#3E4853', '#5B6B79', '#8996A4', '#BEC8D0', '#DBE0E5', '#F3F5F7', '#F8F9FA', '#F8F9FA'];
-    errorColors = ['#c50d0d', '#d31c1c', '#dc2626', '#e76767', '#f5bebe'];
-    warningColors = ['#d35a00', '#de7700', '#e58a00', '#edad4d', '#f7dcb3'];
-    infoColors = ['#1ba9bc', '#30bccc', '#3ec9d6', '#78d9e2', '#c5eff3'];
-    successColors = ['#107d4f', '#21976c', '#2ca87f', '#6bc2a5', '#c0e5d9'];
+    primaryColors = [
+      "#1A211D",
+      "#223028",
+      "#2C3E34",
+      "#3A4F41",
+      "#49604F",
+      "#5C7262",
+      "#7F9385",
+      "#A4B4AA",
+      "#C7D0CB",
+      "#E6EBE8",
+    ];
+    secondaryColors = [
+      "#131920",
+      "#1D2630",
+      "#3E4853",
+      "#5B6B79",
+      "#8996A4",
+      "#BEC8D0",
+      "#DBE0E5",
+      "#F3F5F7",
+      "#F8F9FA",
+      "#F8F9FA",
+    ];
+    errorColors = ["#c50d0d", "#d31c1c", "#dc2626", "#e76767", "#f5bebe"];
+    warningColors = ["#d35a00", "#de7700", "#e58a00", "#edad4d", "#f7dcb3"];
+    infoColors = ["#1ba9bc", "#30bccc", "#3ec9d6", "#78d9e2", "#c5eff3"];
+    successColors = ["#107d4f", "#21976c", "#2ca87f", "#6bc2a5", "#c0e5d9"];
   }
 
   return {
@@ -37,7 +81,7 @@ export default function Default(mode: ThemeMode): PaletteThemeProps {
       700: primaryColors[7],
       darker: primaryColors[8],
       900: primaryColors[9],
-      contrastText
+      contrastText,
     },
     secondary: {
       lighter: secondaryColors[0],
@@ -50,7 +94,7 @@ export default function Default(mode: ThemeMode): PaletteThemeProps {
       dark: secondaryColors[7],
       800: secondaryColors[8],
       darker: secondaryColors[9],
-      contrastText
+      contrastText,
     },
     error: {
       lighter: errorColors[0],
@@ -58,7 +102,7 @@ export default function Default(mode: ThemeMode): PaletteThemeProps {
       main: errorColors[2],
       dark: errorColors[3],
       darker: errorColors[4],
-      contrastText
+      contrastText,
     },
     warning: {
       lighter: warningColors[0],
@@ -66,7 +110,7 @@ export default function Default(mode: ThemeMode): PaletteThemeProps {
       main: warningColors[2],
       dark: warningColors[3],
       darker: warningColors[4],
-      contrastText
+      contrastText,
     },
     info: {
       lighter: infoColors[0],
@@ -74,7 +118,7 @@ export default function Default(mode: ThemeMode): PaletteThemeProps {
       main: infoColors[2],
       dark: infoColors[3],
       darker: infoColors[4],
-      contrastText
+      contrastText,
     },
     success: {
       lighter: successColors[0],
@@ -82,7 +126,7 @@ export default function Default(mode: ThemeMode): PaletteThemeProps {
       main: successColors[2],
       dark: successColors[3],
       darker: successColors[4],
-      contrastText
-    }
+      contrastText,
+    },
   };
 }

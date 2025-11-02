@@ -188,7 +188,7 @@ function PlaceholderContent({ type }: { type?: DropzopType }) {
             sx={{ height: "60px", width: "70px", borderRadius: 0 }}
           />
           <Typography>
-            <Typography component="span" color="#2A50ED" fontWeight="600">
+            <Typography component="span" color="#334735" fontWeight="600">
               Upload file here&nbsp;
             </Typography>
             or drag and drop&nbsp;

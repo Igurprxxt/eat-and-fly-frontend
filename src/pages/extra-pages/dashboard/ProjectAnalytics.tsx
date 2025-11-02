@@ -26,7 +26,7 @@ function EcommerceDataChart({ data }: { data: any[] }) {
       },
     },
     colors: [
-      "#2A50ED",
+      "#334735",
       "#4366EF",
       "#5575F0",
       "#6984F2",

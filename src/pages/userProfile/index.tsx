@@ -93,7 +93,7 @@ const Profile = () => {
                 >
                   <ListItemIcon
                     sx={{
-                      color: selectedIndex === index ? "#2A50ED" : "gray",
+                      color: selectedIndex === index ? "#334735" : "gray",
                       mr: 1,
                     }}
                   >

@@ -1,9 +1,9 @@
-import { Box, styled } from '@mui/system';
-import { Tabs } from '@mui/base/Tabs';
-import { TabsList as BaseTabsList } from '@mui/base/TabsList';
-import { TabPanel as TabPanel } from '@mui/base/TabPanel';
-import { Tab as BaseTab, tabClasses } from '@mui/base/Tab';
-import { Typography } from '@mui/material';
+import { Box, styled } from "@mui/system";
+import { Tabs } from "@mui/base/Tabs";
+import { TabsList as BaseTabsList } from "@mui/base/TabsList";
+import { TabPanel as TabPanel } from "@mui/base/TabPanel";
+import { Tab as BaseTab, tabClasses } from "@mui/base/Tab";
+import { Typography } from "@mui/material";
 
 interface TabProps {
   count: any;
@@ -21,21 +21,21 @@ export default function CustomTabs({ tabs, value, onChange }: any) {
           <Tab
             value={tab.value}
             sx={{
-              padding: '8px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              padding: "8px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               gap: 1,
-              flexDirection: { xs: 'column', sm: 'row' },
-              minWidth: { xs: 'auto', sm: '140px' }
+              flexDirection: { xs: "column", sm: "row" },
+              minWidth: { xs: "auto", sm: "140px" },
             }}
           >
             <Box
               component="span"
               sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               {tab.icon}
@@ -44,7 +44,7 @@ export default function CustomTabs({ tabs, value, onChange }: any) {
               variant="caption"
               sx={{
                 fontWeight: 600,
-                fontSize: { xs: '11px', sm: '13px' }
+                fontSize: { xs: "11px", sm: "13px" },
               }}
             >
               {tab.label}
@@ -55,11 +55,11 @@ export default function CustomTabs({ tabs, value, onChange }: any) {
               variant="caption"
               sx={{
                 fontWeight: 600,
-                fontSize: { xs: '11px', sm: '13px' },
-                bgcolor: '#F9FAFB',
+                fontSize: { xs: "11px", sm: "13px" },
+                bgcolor: "#F9FAFB",
                 borderRadius: 4,
-                border: '1px solid #EAECF0',
-                px: 1
+                border: "1px solid #EAECF0",
+                px: 1,
               }}
             >
               {`+ ${tab?.count}`}
@@ -98,9 +98,9 @@ const Tab = styled(BaseTab)`
   }
 
   &.${tabClasses.selected} {
-    color: #2a50ed !important;
+    color: #334735 !important;
     font-weight: 600;
-    border-bottom: 2px solid #2a50ed; /* Show bottom border for selected tab */
+    border-bottom: 2px solid #334735; /* Show bottom border for selected tab */
   }
 `;
 

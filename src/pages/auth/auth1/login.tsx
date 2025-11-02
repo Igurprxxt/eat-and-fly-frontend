@@ -1,28 +1,12 @@
-import { Link } from "react-router-dom";
-
-// material-ui
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-
-// project-imports
-import Logo from "components/logo";
-import useAuth from "hooks/useAuth";
-import AuthSocButton from "sections/auth/AuthSocButton";
-import AuthDivider from "sections/auth/AuthDivider";
 import AuthWrapper2 from "sections/auth/AuthWrapper2";
 import AuthLogin from "sections/auth/auth-forms/AuthLogin";
-
-// assets
-import imgFacebook from "assets/images/auth/facebook.svg";
-import imgTwitter from "assets/images/auth/twitter.svg";
-import imgGoogle from "assets/images/auth/google.svg";
 
 // ================================|| LOGIN ||================================ //
 
 export default function Login() {
-  const { isLoggedIn } = useAuth();
-
   return (
     <AuthWrapper2>
       <Grid container spacing={3}>
@@ -34,47 +18,29 @@ export default function Login() {
           alignItems={"center"}
           sx={{ textAlign: "center" }}
         >
-          <img src="/mainLogo.png" width={150} />
+          <a
+            className="flex items-center space-x-2 text-primary hover:text-primary-light transition-smooth group"
+            href="/"
+          >
+            <div className="p-1.5 bg-[#334735] rounded-lg shadow-soft group-hover:shadow-glow transition-smooth">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                className="lucide lucide-plane h-6 w-6 text-white"
+              >
+                <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path>
+              </svg>
+            </div>
+            <span className="text-xl font-bold">Eat&amp;Fly</span>
+          </a>
         </Grid>
-        {/* <Grid item xs={12}>
-          <Grid container spacing={1}>
-            <Grid item xs={12}>
-              <AuthSocButton>
-                <img
-                  src={imgFacebook}
-                  alt="Facebook"
-                  style={{ margin: "0 10px" }}
-                />{" "}
-                Sign In with Facebook
-              </AuthSocButton>
-            </Grid>
-            <Grid item xs={12}>
-              <AuthSocButton>
-                <img
-                  src={imgTwitter}
-                  alt="Facebook"
-                  style={{ margin: "0 10px" }}
-                />{" "}
-                Sign In with Twitter
-              </AuthSocButton>
-            </Grid>
-            <Grid item xs={12}>
-              <AuthSocButton>
-                <img
-                  src={imgGoogle}
-                  alt="Facebook"
-                  style={{ margin: "0 10px" }}
-                />{" "}
-                Sign In with Google
-              </AuthSocButton>
-            </Grid>
-          </Grid>
-        </Grid> */}
-        {/* <Grid item xs={12}>
-          <AuthDivider>
-            <Typography variant="body1">OR</Typography>
-          </AuthDivider>
-        </Grid> */}
         <Grid item xs={12}>
           <Stack
             direction="row"
@@ -83,15 +49,6 @@ export default function Login() {
             sx={{ mb: { xs: -0.5, sm: 0.5 } }}
           >
             <Typography variant="h3">Login</Typography>
-            {/* <Typography
-              component={Link}
-              to={"/register"}
-              variant="body1"
-              sx={{ textDecoration: "none" }}
-              color="primary"
-            >
-              Don&apos;t have an account?
-            </Typography> */}
           </Stack>
         </Grid>
         <Grid item xs={12}>

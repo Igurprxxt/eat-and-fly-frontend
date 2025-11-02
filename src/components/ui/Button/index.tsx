@@ -45,7 +45,7 @@ const ThemeButton = ({
         ...buttonStyle,
         ...(variant === "contained" &&
           disabled && {
-            backgroundColor: "#2A50ED !important", // Force blue
+            backgroundColor: "#334735 !important", // Force blue
             color: "#ffffff !important", // White text
             opacity: 0.9, // Slight dim effect
             pointerEvents: "none",

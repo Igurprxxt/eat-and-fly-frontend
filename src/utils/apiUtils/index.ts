@@ -1,14 +1,11 @@
 import axios, { AxiosRequestConfig, Method } from "axios";
-
-// Assuming the getItem function returns any. You might want to specify a more precise type.
 import { getItem } from "./localStorageControl";
 
 export const hostname = () => {
   let hostUrl = "";
   switch (window.location.hostname) {
-    case "localhost": // Development environment
-      // hostUrl = "http://localhost:4000/api";
-      hostUrl = "https://api-smart.codekraftsolutions.com/api";
+    case "localhost":
+      hostUrl = "http://localhost:4001/api";
       break;
 
     default:

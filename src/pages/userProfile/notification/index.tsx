@@ -203,7 +203,7 @@ const Notification = () => {
           <Stack marginBottom={3}>
             <Typography
               fontSize={"20px"}
-              sx={{ color: "#2A50ED" }}
+              sx={{ color: "#334735" }}
               fontWeight={600}
             >
               Student Platform

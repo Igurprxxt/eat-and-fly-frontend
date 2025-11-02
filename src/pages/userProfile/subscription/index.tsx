@@ -262,7 +262,7 @@ function SubscriptionPage() {
                     {/* Header Skeleton */}
                     <div className="flex items-center justify-between border-b border-[#e5e9ef] pb-6">
                       <div className="flex items-center gap-4">
-                        <Skeleton className="h-12 w-12 rounded-xl bg-[#2a50ed]/5" />
+                        <Skeleton className="h-12 w-12 rounded-xl bg-[#334735]/5" />
                         <div className="space-y-2">
                           <Skeleton className="h-6 w-32" />
                           <Skeleton className="h-4 w-40" />
@@ -288,7 +288,7 @@ function SubscriptionPage() {
 
                     {/* Total Skeleton */}
                     <div className="border-t border-[#e5e9ef] pt-6">
-                      <div className="flex items-center justify-between bg-gradient-to-r from-[#2a50ed]/5 to-[#2a50ed]/10 p-6 rounded-xl">
+                      <div className="flex items-center justify-between bg-gradient-to-r from-[#334735]/5 to-[#334735]/10 p-6 rounded-xl">
                         <div className="flex items-center gap-3">
                           <Skeleton className="h-10 w-10 rounded-lg" />
                           <div className="space-y-1">
@@ -316,11 +316,11 @@ function SubscriptionPage() {
                         {/* Header */}
                         <div className="flex items-center justify-between border-b border-[#e5e9ef] pb-6">
                           <div className="flex items-center gap-4">
-                            <div className="h-12 w-12 rounded-xl bg-[#2a50ed]/10 flex items-center justify-center">
-                              <CalendarClock className="h-6 w-6 text-[#2a50ed]" />
+                            <div className="h-12 w-12 rounded-xl bg-[#334735]/10 flex items-center justify-center">
+                              <CalendarClock className="h-6 w-6 text-[#334735]" />
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-[#2a50ed]">
+                              <h3 className="text-xl font-bold text-[#334735]">
                                 Next Payment
                               </h3>
                               {user?.stripe?.subscriptionStatus ===
@@ -333,8 +333,8 @@ function SubscriptionPage() {
                               )}
                             </div>
                           </div>
-                          <div className="h-10 w-10 rounded-xl bg-[#2a50ed]/5 flex items-center justify-center">
-                            <CreditCard className="h-5 w-5 text-[#2a50ed]" />
+                          <div className="h-10 w-10 rounded-xl bg-[#334735]/5 flex items-center justify-center">
+                            <CreditCard className="h-5 w-5 text-[#334735]" />
                           </div>
                         </div>
 
@@ -347,7 +347,7 @@ function SubscriptionPage() {
                                   <span className="text-sm text-gray-600">
                                     Subtotal
                                   </span>
-                                  <div className="px-1.5 py-0.5 rounded-full bg-[#2a50ed]/5 text-[10px] font-medium text-[#2a50ed]">
+                                  <div className="px-1.5 py-0.5 rounded-full bg-[#334735]/5 text-[10px] font-medium text-[#334735]">
                                     Monthly
                                   </div>
                                 </div>
@@ -371,10 +371,10 @@ function SubscriptionPage() {
 
                             {/* Total */}
                             <div className="border-t border-[#e5e9ef] pt-6">
-                              <div className="flex items-center justify-between bg-gradient-to-r from-[#2a50ed]/5 to-[#2a50ed]/10 p-6 rounded-xl">
+                              <div className="flex items-center justify-between bg-gradient-to-r from-[#334735]/5 to-[#334735]/10 p-6 rounded-xl">
                                 <div className="flex items-center gap-3">
                                   <div className="h-10 w-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
-                                    <Receipt className="h-5 w-5 text-[#2a50ed]" />
+                                    <Receipt className="h-5 w-5 text-[#334735]" />
                                   </div>
                                   <div className="space-y-0.5">
                                     <span className="font-semibold text-base text-gray-900">
@@ -386,7 +386,7 @@ function SubscriptionPage() {
                                   </div>
                                 </div>
                                 <div className="text-right">
-                                  <span className="text-xl font-bold text-[#2a50ed]">
+                                  <span className="text-xl font-bold text-[#334735]">
                                     {formatDollar(
                                       (futureInvoice?.total || 0) / 100
                                     )}

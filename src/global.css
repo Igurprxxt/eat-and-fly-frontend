@@ -5,9 +5,6 @@
 @import "tailwindcss";
 /* @plugin "daisyui"; */
 
-
-
-
 .one-liner {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -17,7 +14,7 @@
 }
 
 a {
-  color: #2a50ed;
+  color: #334735;
 }
 
 .rich-text p {
@@ -135,7 +132,6 @@ a {
   text-transform: capitalize;
 }
 
-.css-inqqk3-MuiInputBase-root-MuiInput-root::before{
-  border:0
+.css-inqqk3-MuiInputBase-root-MuiInput-root::before {
+  border: 0;
 }
-

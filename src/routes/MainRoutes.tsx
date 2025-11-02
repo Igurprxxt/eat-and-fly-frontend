@@ -13,6 +13,8 @@ import { UploadCustomerCsv, ValidateCustomerCsv } from "services/customer";
 import { UploadToolCsv, ValidateToolCsv } from "services/chassis";
 
 import StaffMainPage from "pages/Staff";
+import ProductMainPage from "pages/product";
+import AddProduct from "pages/product/product";
 
 const MaintenanceError = Loadable(
   lazy(() => import("pages/maintenance/error/404"))
@@ -124,7 +126,6 @@ const MainRoutes: any = {
         {
           path: "staff",
           element: <StaffMainPage />,
-          // element: <MaintenanceUnderConstruction />,
         },
         {
           path: "/staff/active",
@@ -143,6 +144,44 @@ const MainRoutes: any = {
         {
           path: "/staff/add",
           element: <AddStaff />,
+        },
+        {
+          path: "/staff/update/:staffId",
+          element: <AddStaff />,
+        },
+      ],
+    },
+
+    {
+      path: "/",
+      element: <DashboardLayout allowPermission={"allow_both"} />,
+
+      children: [
+        {
+          path: "products",
+          element: <ProductMainPage />,
+        },
+        // {
+        //   path: "/staff/active",
+        //   element: <ProductMainPage />,
+        // },
+
+        // {
+        //   path: "/staff/inactive",
+        //   element: <ProductMainPage />,
+        // },
+        // {
+        //   path: "/staff/awaiting",
+        //   element: <StaffMainPage />,
+        // },
+
+        {
+          path: "/product/add",
+          element: <AddProduct />,
+        },
+        {
+          path: "/product/update/:staffId",
+          element: <AddProduct />,
         },
       ],
     },
