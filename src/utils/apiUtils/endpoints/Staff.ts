@@ -31,7 +31,7 @@ const staff = {
     v1: {
       ...defaults.methods.PUT,
       ...defaults.versions.v1,
-      uri: prefix + "/admin/password",
+      uri: prefix + "/admin/password/reset",
     },
   },
 
