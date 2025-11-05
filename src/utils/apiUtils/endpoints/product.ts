@@ -58,6 +58,14 @@ const product = {
       uri: prefix,
     },
   },
+
+  deleteProduct: {
+    v1: {
+      ...defaults.methods.DELETE,
+      ...defaults.versions.v1,
+      uri: prefix + "/:id",
+    },
+  },
 };
 
 export default product;

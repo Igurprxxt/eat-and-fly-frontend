@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Box, Stack, Tab, useMediaQuery } from "@mui/material";
+import { Stack, useMediaQuery } from "@mui/material";
 import Page from "components/ui/PageLayout";
-import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { TabContext } from "@mui/lab";
 import MainCard from "components/MainCard";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ThemeButton from "components/ui/Button";
@@ -144,12 +144,6 @@ const ProductMainPage = () => {
               // </Stack>
             }
           >
-            {/* {tabs?.map((tab) => (
-              <TabPanel key={tab?.value} value={tab?.value} sx={{ p: 0 }}>
-                {tab?.content}
-              </TabPanel>
-            ))} */}
-
             <ProductTable
               value={value}
               searchText={searchText}

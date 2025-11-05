@@ -1,3 +1,4 @@
+import NewLogo from "components/newLogo";
 import dayjs from "dayjs";
 import { formatDollar } from "utils/trimFc";
 
@@ -27,11 +28,7 @@ const StepTwo = ({ orderBilling }: any) => {
       <div className="bg-blue-700 text-white p-6 flex justify-between items-center">
         <h1 className="text-2xl font-bold">INVOICE</h1>
 
-        <img
-          src="https://smart-global-frontend.pages.dev/mainLogo.png"
-          width={100}
-          className="bg-white p-0.5 rounded-sm"
-        />
+        <NewLogo />
         {/* <div className="text-right text-lg font-semibold">Smart Global</div> */}
       </div>
 

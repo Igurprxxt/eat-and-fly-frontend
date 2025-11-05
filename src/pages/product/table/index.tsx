@@ -1,13 +1,5 @@
 import React, { useMemo, useEffect, useState } from "react";
-import {
-  Typography,
-  Chip,
-  Drawer,
-  SvgIcon,
-  Tab,
-  FormLabel,
-  OutlinedInput,
-} from "@mui/material";
+import { Typography, Drawer, SvgIcon, Tab } from "@mui/material";
 import { InfoCircle } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -27,43 +19,34 @@ import { Box, Stack, useTheme } from "@mui/material";
 import { Divider } from "@mui/material";
 import TablePagination from "components/third-party/TablePagination";
 import MenuList from "components/ui/menuList";
-import { StyleLockIcon, StyleUnLockIcon } from "assets/svg/lock";
-import { ProfileIcon } from "assets/svg/profile";
-import { Modal } from "@mui/material";
 import TableLoading from "components/ui/TableLoading";
 import { openSnackbar } from "api/snackbar";
 import { SnackbarProps } from "types/snackbar";
 import { Filter } from "components/filter";
 import EmptyTable from "components/ui/EmptyTable";
-import { LoadingButton, TabContext, TabList, TabPanel } from "@mui/lab";
-import ThemeButton from "components/ui/Button";
-import { defaultSx } from "components/ui/Button/styles";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { CloseIcon } from "assets/svg/CloseIcon";
 import SelectColumnVisibility from "components/third-party/SelectColumnVisibility";
-
-import { UpdateStatus, updateStaffPassword } from "services/staff";
-import { Edit, LockKeyhole, Send } from "lucide-react";
-import OtherModal from "../../../components/ui/Modal";
+import { UpdateStatus } from "services/staff";
+import { Edit } from "lucide-react";
 import { useGetProduct } from "hooks/product/query";
+import { DeleteIcon } from "assets/svg/Delete";
+import ConfirmModal from "components/ui/confrimModal";
+import { deleteProduct } from "services/product";
 
 const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [columnFilters, setColumnFilters] = useState<any>([]);
   const [open, setOpen] = useState<boolean>(false);
-  const [updatePassword, setUpdatePassword] = useState({
-    boolean: false,
-    uuid: "",
-    newPassword: "",
-  });
+
   const [recruiterStatus, setRecruiterStatus] = useState<any>({
     id: "",
-    status: "",
   });
   const [startIndex, setStartIndex] = useState(0);
   const [viewPage, setViewPage] = useState(25);
   const [statusLoading, setStatusLoading] = useState(false);
-  const [updateLoading, setUpdateLoading] = useState(false);
+
   const [filterValue, setFilterValue] = useState("Columns");
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setFilterValue(newValue);
@@ -106,28 +89,12 @@ const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
       },
     },
     {
-      icon: <ProfileIcon />,
-      value: "Update Status",
+      icon: <DeleteIcon />,
+      value: "Delete Product",
 
       content: () => {
-        setRecruiterStatus({
-          id: rowData?.uuid,
-          status: rowData?.isActive,
-        });
         setOpen(true);
-      },
-    },
-
-    {
-      icon: <LockKeyhole color="#778194" width="18" height="18" />,
-      value: "Update Password",
-
-      content: () => {
-        setUpdatePassword((prev) => ({
-          ...prev,
-          boolean: true,
-          uuid: rowData?.uuid,
-        }));
+        setRecruiterStatus({ id: rowData?.uuid });
       },
     },
   ];
@@ -151,13 +118,10 @@ const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
     localStorage.setItem("staff", JSON.stringify(columnVisibility));
   }, [columnVisibility]);
 
-  const changeRecruiterStatus = () => {
+  const deleteStatus = () => {
     setStatusLoading(true);
-    UpdateStatus({
+    deleteProduct({
       pathParams: { id: recruiterStatus?.id },
-      body: {
-        isActive: !recruiterStatus?.status,
-      },
     })
       ?.then((res) => {
         refetchStaff();
@@ -484,170 +448,14 @@ const ProductTable = ({ value, searchText, drawer, setDrawer }: any) => {
         </Stack>
       </ScrollX>
 
-      <Modal
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+      <ConfirmModal
+        modalTitle=""
         open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
-      >
-        <Box sx={style}>
-          <Stack
-            direction={"column"}
-            alignItems={"center"}
-            gap={4}
-            sx={{ width: "100%" }}
-          >
-            <Stack
-              sx={{
-                backgroundColor: "white",
-                borderRadius: 100,
-                boxShadow: 1,
-                padding: 2,
-              }}
-            >
-              {recruiterStatus?.status === true ? (
-                <StyleUnLockIcon />
-              ) : (
-                <StyleLockIcon />
-              )}
-            </Stack>
-            <Stack sx={{ textAlign: "center" }}>
-              <Typography variant="h4">{`${recruiterStatus?.status === true ? "Deactivate" : "Activate"} Staff`}</Typography>
-              <Typography variant="caption" marginTop={1}>
-                Are you sure you want to{" "}
-                {recruiterStatus?.status === true ? "deactivate" : "activate"}{" "}
-                this staff?{" "}
-              </Typography>
-            </Stack>
-
-            <Stack direction={"row"} gap={2} sx={{ width: "100%" }}>
-              <ThemeButton
-                variant="outlined"
-                color="primary"
-                onClick={() => {
-                  setOpen(false);
-                }}
-                buttonStyle={{
-                  width: "100%",
-                }}
-              >
-                <Typography>Cancel</Typography>
-              </ThemeButton>
-              <LoadingButton
-                loading={statusLoading}
-                variant="contained"
-                color="primary"
-                fullWidth
-                sx={{ ...defaultSx }}
-                onClick={() => {
-                  changeRecruiterStatus();
-                }}
-              >
-                <Typography> Confirm</Typography>
-              </LoadingButton>
-            </Stack>
-          </Stack>
-        </Box>
-      </Modal>
-
-      <OtherModal
-        title="Update Password"
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        open={updatePassword?.boolean}
-        handleClose={() => {
-          setUpdatePassword({ boolean: false, uuid: "", newPassword: "" });
-        }}
-        footerActions={
-          <Stack direction={"row"} gap={2}>
-            <ThemeButton
-              variant={"outlined"}
-              onClick={() => {
-                setUpdatePassword({
-                  boolean: false,
-                  uuid: "",
-                  newPassword: "",
-                });
-              }}
-            >
-              Cancel
-            </ThemeButton>
-            <ThemeButton
-              loading={updateLoading}
-              variant={"contained"}
-              onClick={() => {
-                setUpdateLoading(true);
-                updateStaffPassword({
-                  body: {
-                    userUuid: updatePassword?.uuid,
-                    newPassword: updatePassword?.newPassword,
-                  },
-                })
-                  ?.then(() => {
-                    setUpdateLoading(false);
-                    openSnackbar({
-                      open: true,
-                      message: "Staff password update successfully.",
-                      variant: "alert",
-                      alert: {
-                        color: "success",
-                      },
-                    } as SnackbarProps);
-                  })
-                  .catch((err) => {
-                    openSnackbar({
-                      open: true,
-                      message:
-                        err?.data?.error?.message || "Something went wrong",
-                      variant: "alert",
-                      alert: {
-                        color: "error",
-                        icon: <InfoCircle />,
-                      },
-                      anchorOrigin: {
-                        vertical: "top",
-                        horizontal: "right",
-                      },
-                    } as SnackbarProps);
-                    setUpdateLoading(false);
-                  });
-              }}
-            >
-              Update
-            </ThemeButton>
-          </Stack>
-        }
-      >
-        <Stack width={400}>
-          <FormLabel
-            required
-            sx={{
-              mb: 0.5,
-              color: "#5A667B",
-              "& .MuiFormLabel-asterisk ": { color: "red" },
-              fontWeight: 600,
-              fontSize: "13px",
-            }}
-          >
-            New Password
-          </FormLabel>
-          <OutlinedInput
-            notched={false}
-            sx={{ height: "40px" }}
-            fullWidth
-            value={updatePassword?.newPassword}
-            placeholder={" Enter new password"}
-            onChange={(e) => {
-              setUpdatePassword((prev) => ({
-                ...prev,
-                newPassword: e.target.value,
-              }));
-            }}
-          />
-        </Stack>
-      </OtherModal>
+        title={"Are you sure you want to delete this chassis?"}
+        onCancel={() => setOpen(false)}
+        onConfirm={deleteStatus}
+        confirmLoading={statusLoading}
+      />
 
       <Drawer
         open={drawer}

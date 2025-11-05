@@ -21,6 +21,7 @@ import { SnackbarProps } from "types/snackbar";
 import { InfoCircle } from "iconsax-react";
 import FormLabels from "components/ui/FormLabel";
 import { createProduct, getSingleFetch, updateProduct } from "services/product";
+import { IndianRupee } from "lucide-react";
 
 // -------------------- SCHEMA -------------------- //
 const pricingSchema = z.object({
@@ -218,14 +219,17 @@ const AddProduct: React.FC = () => {
                 />
               </Grid>
 
-              {/* -------------------- Pricing Inputs -------------------- */}
-              {fields.map((field: any, index) => (
+              {fields?.map((field: any, index) => (
                 <Grid key={field.id} item xs={12} sm={6}>
                   <Input
                     control={control}
-                    label={`Price (${field.airport})`}
+                    label={`Price (${field.airport.charAt(0).toUpperCase() + field.airport.slice(1)})`}
                     name={`pricing.${index}.price`}
                     placeholder="Enter price"
+                    startAdornment={<IndianRupee />}
+                    onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      e.target.value = e.target.value.replace(/[^0-9.]/g, "");
+                    }}
                     error={errors}
                   />
                 </Grid>

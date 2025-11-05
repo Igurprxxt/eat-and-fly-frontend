@@ -1,5 +1,6 @@
 import { CircularProgress } from "@mui/material";
 import { DownloadIcon } from "assets/svg/DownloadIcon";
+import NewLogo from "components/newLogo";
 import ThemeButton from "components/ui/Button";
 import Modal from "components/ui/Modal";
 import dayjs from "dayjs";
@@ -87,11 +88,7 @@ const Invoice = ({ open, setOpen, orderBilling, setMailOpen }: any) => {
         <div className="bg-blue-700 text-white p-6 flex justify-between items-center">
           <h1 className="text-2xl font-bold">INVOICE</h1>
 
-          <img
-            src="https://smart-global-frontend.pages.dev/mainLogo.png"
-            width={100}
-            className="bg-white p-0.5 rounded-sm"
-          />
+          <NewLogo />
           {/* <div className="text-right text-lg font-semibold">Smart Global</div> */}
         </div>
 
