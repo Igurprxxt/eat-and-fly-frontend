@@ -1,17 +1,17 @@
-// // firebaseConfig.js
-// // import { initializeApp } from "firebase/app";
-// import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBQoUyH7iKDZewnPilIm6iIAulctVZs3dU",
-//   authDomain: "enroll-here-student-login.firebaseapp.com",
-//   projectId: "enroll-here-student-login",
-//   storageBucket: "enroll-here-student-login.firebasestorage.app",
-//   messagingSenderId: "200572884454",
-//   appId: "1:200572884454:web:58ba9e7b163738095e7227",
-// };
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDKvsaGh0OsNG1FGlQ2EcAfno6Tykqrtmo",
+  authDomain: "eatandfly-a34cb.firebaseapp.com",
+  projectId: "eatandfly-a34cb",
+  storageBucket: "eatandfly-a34cb.firebasestorage.app",
+  messagingSenderId: "28378346859",
+  appId: "1:28378346859:web:90fa468afdb459e6eec82e",
+};
 
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
-
-// export { auth, GoogleAuthProvider, signInWithPopup };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);

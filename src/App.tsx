@@ -21,6 +21,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import useNetworkStatus from "hooks/useNetwork";
 // import Customization from 'components/Customization';
 
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
@@ -48,6 +49,7 @@ export const queryClient = new QueryClient({
 });
 
 export default function App() {
+  const { isOnline } = useNetworkStatus();
   return (
     <>
       <ThemeCustomization>
@@ -59,7 +61,6 @@ export default function App() {
                 <RoleProvider>
                   <>
                     <RouterProvider router={router} />
-
                     {/* <Customization /> */}
                     <Snackbar />
                   </>

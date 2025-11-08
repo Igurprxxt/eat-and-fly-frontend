@@ -1,17 +1,17 @@
-import { cloneElement, ReactElement } from 'react';
+import { cloneElement, ReactElement } from "react";
 
 // material-ui
-import { alpha, useTheme } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { alpha, useTheme } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
 
 // project-imports
-import Navigation from './DrawerContent/Navigation';
+import Navigation from "./DrawerContent/Navigation";
 
-import { HEADER_HEIGHT } from 'config';
-import useConfig from 'hooks/useConfig';
+import { HEADER_HEIGHT } from "config";
+import useConfig from "hooks/useConfig";
 
 // ==============================|| HORIZONTAL MENU LIST ||============================== //
 
@@ -28,14 +28,14 @@ function ElevationScroll({ children, window }: ElevationScrollProps) {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
-    target: window!
+    target: window!,
   });
 
   theme.shadows[4] = theme.customShadows.z1;
   theme.shadows[1] = theme.customShadows.z2;
 
   return cloneElement(children, {
-    elevation: trigger ? 4 : 1
+    elevation: trigger ? 4 : 1,
   });
 }
 
@@ -52,16 +52,16 @@ export default function CustomAppBar() {
           top: HEADER_HEIGHT,
           height: HEADER_HEIGHT,
           bgcolor: alpha(theme.palette.background.default, 0.8),
-          backdropFilter: 'blur(8px)',
-          width: '100%',
-          justifyContent: 'center',
+          backdropFilter: "blur(8px)",
+          width: "100%",
+          justifyContent: "center",
           borderTop: `1px solid ${theme.palette.divider}`,
           zIndex: 1098,
-          color: theme.palette.secondary.main
+          color: theme.palette.secondary.main,
         }}
       >
-        <Container maxWidth={container ? 'xl' : false}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Container maxWidth={container ? "xl" : false}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <Navigation />
           </Box>
         </Container>

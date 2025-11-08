@@ -31,6 +31,7 @@ import useAuth from "hooks/useAuth";
 // import avatar1 from "assets/images/users/avatar-6.png";
 import { Setting2, Profile, Logout } from "iconsax-react";
 import ArrowDown from "assets/svg/ArrowDown";
+import useNetworkStatus from "hooks/useNetwork";
 
 // types
 interface TabPanelProps {
@@ -95,7 +96,7 @@ export default function ProfilePage() {
     }
     setOpen(false);
   };
-
+  const { isOnline } = useNetworkStatus();
   const [value, setValue] = useState(0);
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
@@ -103,48 +104,73 @@ export default function ProfilePage() {
   };
 
   return (
-    <Box sx={{ flexShrink: 0, ml: 0.75 }}>
-      <ButtonBase
-        sx={{
-          p: 0.25,
-
-          borderRadius: 1,
-          "&:hover": {
-            bgcolor:
-              theme.palette.mode === ThemeMode.DARK
-                ? "secondary.light"
-                : "secondary.lighter",
-          },
-          "&:focus-visible": {
-            outline: `2px solid ${theme.palette.secondary.dark}`,
-            outlineOffset: 2,
-          },
-        }}
-        aria-label="open profile"
-        ref={anchorRef}
-        aria-controls={open ? "profile-grow" : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}
-      >
-        <Stack direction="row" spacing={1.25} alignItems={"center"}>
-          <Avatar
-            alt={user?.firstName}
-            src={user?.avatar_url || ""}
-            sx={{ borderRadius: 1 }}
+    <Box
+      sx={{
+        flexShrink: 0,
+        ml: 0.75,
+      }}
+    >
+      <Stack direction={"row"} gap={4} alignItems={"center"}>
+        <Typography
+          variant="h6"
+          color={isOnline ? "green" : "red"}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 0.5,
+            mt: 0.25,
+          }}
+        >
+          <Box
+            sx={{
+              width: 8,
+              height: 8,
+              borderRadius: "50%",
+              bgcolor: isOnline ? "green" : "red",
+            }}
           />
-          <Stack direction={"column"} textAlign={"start"}>
-            <Typography
-              variant="subtitle1"
-              color={"#394663"}
-            >{`${user?.firstName || ""} ${user?.lastName || ""}`}</Typography>
-            <Typography variant="body2" color="secondary">
-              {user?.email || "info@codekraftsolutions.com"}
-            </Typography>
-          </Stack>
+          {isOnline ? "Online" : "Offline"}
+        </Typography>
+        <ButtonBase
+          sx={{
+            p: 0.25,
 
-          <ArrowDown />
-        </Stack>
-      </ButtonBase>
+            borderRadius: 1,
+            "&:hover": {
+              bgcolor:
+                theme.palette.mode === ThemeMode.DARK
+                  ? "secondary.light"
+                  : "secondary.lighter",
+            },
+            "&:focus-visible": {
+              outline: `2px solid ${theme.palette.secondary.dark}`,
+              outlineOffset: 2,
+            },
+          }}
+          aria-label="open profile"
+          ref={anchorRef}
+          aria-controls={open ? "profile-grow" : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          <Stack direction="row" spacing={1.25} alignItems={"center"}>
+            <Avatar
+              alt={user?.firstName}
+              src={user?.avatar_url || ""}
+              sx={{ borderRadius: 1 }}
+            />
+            <Stack direction={"column"} textAlign={"start"}>
+              <Typography variant="subtitle1" color={"#394663"}>
+                {`${user?.firstName || ""} ${user?.lastName || ""}`}{" "}
+              </Typography>
+              <Typography variant="body2" color="secondary">
+                {user?.email || "info@codekraftsolutions.com"}
+              </Typography>
+            </Stack>
+            <ArrowDown />
+          </Stack>
+        </ButtonBase>
+      </Stack>
       <Popper
         placement="bottom-end"
         open={open}
