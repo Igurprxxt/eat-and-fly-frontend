@@ -63,7 +63,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="!mb-2">
+      {/* <div className="!mb-2">
         {tabs?.map((item, index) => (
           <Button
             key={index}
@@ -135,7 +135,7 @@ export default function Dashboard() {
       ) : (
         <></>
       )}
-      {tab.content}
+      {tab.content} */}
     </>
   );
 }
