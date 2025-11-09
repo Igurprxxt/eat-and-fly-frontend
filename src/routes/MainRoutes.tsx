@@ -15,6 +15,8 @@ import { UploadToolCsv, ValidateToolCsv } from "services/chassis";
 import StaffMainPage from "pages/Staff";
 import ProductMainPage from "pages/product";
 import AddProduct from "pages/product/product";
+import CreateInvoice from "pages/Invoice/createInvoice";
+import InvoiceMainPage from "pages/Invoice";
 
 const MaintenanceError = Loadable(
   lazy(() => import("pages/maintenance/error/404"))
@@ -182,6 +184,22 @@ const MainRoutes: any = {
         {
           path: "/product/update/:productId",
           element: <AddProduct />,
+        },
+      ],
+    },
+
+    {
+      path: "/",
+      element: <DashboardLayout allowPermission={"allow_both"} />,
+
+      children: [
+        {
+          path: "invoices",
+          element: <InvoiceMainPage />,
+        },
+        {
+          path: "/invoice/create",
+          element: <CreateInvoice />,
         },
       ],
     },

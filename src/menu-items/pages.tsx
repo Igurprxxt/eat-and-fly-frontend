@@ -1,9 +1,5 @@
-// third-party
 import { FormattedMessage } from "react-intl";
-
-// assets
 import {
-  Book,
   Box,
   BoxTime,
   DiscountShape,
@@ -17,15 +13,10 @@ import {
   Truck,
   User,
 } from "iconsax-react";
-
-// type
 import Recruiter from "../../public/svg/recruiter";
 import HomeIcon from "assets/svg/HomeIcon";
 import { ToolIcon } from "assets/svg/tool";
-
-import { PackageCheck, ShoppingCart, UsersRound } from "lucide-react";
-
-// icons
+import { ScrollText, ShoppingCart } from "lucide-react";
 
 const icons = {
   maintenance: "",
@@ -39,13 +30,10 @@ const icons = {
   payment: DollarCircle,
   coupon: DiscountShape,
   inquires: User,
-
-  //  new users
-
+  invoice: ScrollText,
   user: User,
   truck: Truck,
   chassis: ToolIcon,
-
   order: BoxTime,
   dispatch: Box,
   Consignees: Box,
@@ -67,7 +55,6 @@ const pages: any = {
       url: "/dashboard",
       icon: icons?.dashboard,
     },
-
     {
       id: "STAFF",
       title: <FormattedMessage id="Staff" />,
@@ -76,7 +63,6 @@ const pages: any = {
       icon: icons.student,
       activeIcon: icons.student,
     },
-
     {
       id: "PRODUCT",
       title: <FormattedMessage id="product" />,
@@ -85,7 +71,6 @@ const pages: any = {
       icon: icons.staff,
       activeIcon: icons.staff,
     },
-
     {
       id: "CUSTOMERS",
       title: <FormattedMessage id="Customers" />,
@@ -94,7 +79,14 @@ const pages: any = {
       icon: icons.customer,
       activeIcon: icons.customer,
     },
-
+    {
+      id: "INVOICES",
+      title: <FormattedMessage id="invoices" />,
+      type: "item",
+      url: "/invoices",
+      icon: icons.invoice,
+      activeIcon: icons.invoice,
+    },
     {
       id: "CHASSIS",
       title: <FormattedMessage id="Chassis" />,
